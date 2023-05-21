@@ -13,6 +13,7 @@ function CalculationController($scope) {
 
   calcCtrl.decl = {
     salaire: 24000,
+    nbEnfants: '2',
     gardeAlternee: false
   };
 

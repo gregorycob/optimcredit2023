@@ -1,14 +1,3 @@
-body {
-  font-size: 1.2em;
-}
-input {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-button {
-  font-size: 24px;
-}
-
 .ng-touched.ng-valid {
   border: 2px green solid;
 }
@@ -19,4 +8,11 @@ button {
 
 #info {
   margin-top: 20px;
+}
+
+.alert {
+  margin-bottom: 1px;
+  height: 30px;
+  line-height:30px;
+  padding:0px 15px;
 }
