@@ -7,103 +7,114 @@
 
     <title>Calcul Impôts</title>
   </head>
-  <body ng-controller="RegistrationController as reg">
-    <h1>Calcul Impôts</h1>
+  <body ng-controller="CalculationController as calcCtrl">
+    
+    <fieldset class="container col-md-6 d-grid gap-2">
 
-    <fieldset>
+      <h1>Calcul Impôts</h1>
+
       <legend>Estimez vos impôts en 1 clic</legend>
+      <br/>
+
       <form name='regForm' class="needs-validation" novalidate>
 
-        <div class="container col-md-4 d-grid gap-2">
+        <div >
 
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Situation de famille</option>
-            <option value="1">Célibataire ou divorcé(e)</option>
-            <option value="2">Marié(e)s ou lié(e)s par un PACS</option>
-            <option value="3">Veuf(ve)</option>
-          </select>  
+          <div class="input-group">
+            <label class="input-group-text">Situation Familiale</label><br>
+            <select class="form-select"
+              aria-label="Default select example"
+              ng-model="calcCtrl.decl.situationFamiliale"
+              placeholder="sélectionnez"
+              required>
+              <option value="1">Célibataire ou divorcé(e)</option>
+              <option value="2">Marié(e)s ou lié(e)s par un PACS</option>
+              <option value="3">Veuf(ve)</option>
+            </select>
+            <span ng-if="!calcCtrl.decl.situationFamille">
+              sélectionnez la situation qui vous correspond.
+            </span> 
+          </div>
+          <br/>   
   
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Nombre d'enfants</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-  
+          <div class="input-group">
+            <label class="input-group-text">Nombre d'enfants</label><br>
+            <select class="form-select"
+              aria-label="Default select example"
+              ng-model="calcCtrl.decl.nbEnfants"
+              required>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+            <input class="form-check-input" type="checkbox" value=""
+              id="invalidCheck"
+              ng-model="calcCtrl.decl.gardeAlternee">
             <label class="form-check-label" for="invalidCheck">
               Garde alternée
             </label>
           </div>
+          <br/>   
 
           <div class="input-group">
-            <span class="input-group-text">Salaire (annuel)</span>
-            <input type="number" min="0" step="1" value="24000" id="exampleInputAmount" class="form-control" placeholder="Price">
+            <span class="input-group-text">Salaire (net imposable annuel)</span>
+            <input type="number"
+              min="0"
+              step="1"
+              name="salaire"
+              ng-model="calcCtrl.decl.salaire"
+              class="form-control"
+              required>
             <div class="input-group-text">(EUR)</div>
           </div>
-  
+
+          <div class="small">soit {{ calcCtrl.arrondi(calcCtrl.decl.salaire / 12) | number}} &euro; par mois</div>
+          <br/>
+
           <div class="input-group">
-            <span class="input-group-text">Charges & Pensions</span>
-            <input type="number" min="0" step="1" value="0" id="exampleInputAmount" class="form-control" placeholder="Price">
+            <span class="input-group-text">Charges & Pensions (que vous payez)</span>
+            <input type="number" min="0" step="1"
+              ng-model="calcCtrl.decl.charges"
+              id="exampleInputAmount"
+              class="form-control"
+              placeholder="(montant annuel)">
             <div class="input-group-text">(EUR)</div>
           </div>  
 
+          <span class="small" ng-if="calcCtrl.decl.charges > 0">soit {{ calcCtrl.arrondi(calcCtrl.decl.charges / 12) | number}} &euro; par mois</span>
+          <br/>
+          <br/>
+
           <div class="col-12">
-            <button class="btn btn-primary" type="submit">Cacul Impôts</button>
+            <button
+              class="btn btn-primary"
+              type="submit"
+              ng-click="calcCtrl.submit()"
+              ng-disabled="regForm.$invalid"
+            >Cacul Impôts</button>
           </div>
-  
-        </div>
-
-        
-        <input type="text" name="username" placeholder="Pick a username"
-          ng-model="reg.user.username"
-          required
-          minlength="4"
-          ng-maxlength="10">
-          {{ reg.user.username }}
-          <span
-            ng-if="(regForm.username.$error.minlength || regForm.username.$error.required) && regForm.username.$touched">
-            Username must be at least 4 characters long
-          </span>
-          <span ng-if="regForm.username.$error.maxlength && regForm.username.$touched">
-            Username must not be longer than 10 characters
-          </span>
-          <br>
-
-        <input type="email" name="email" placeholder="Email"
-          ng-model="reg.user.email"
-          required>
-          <span ng-if="regForm.email.$invalid && regForm.email.$touched">
-            Must be a valid email address: handle@domain format
-          </span>
-          <br>
-
-        <input type="text" name="phone" placeholder="Phone ###-###-####"
-          ng-model="reg.user.phone"
-          pattern="(\d{3})-(\d{3})-(\d{4})">
-          <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
-            Phone must be in the format ###-###-####.
-          </span>
-          <br>
-
-        <button
-          ng-disabled="regForm.$invalid"
-          ng-click="reg.submit()">Submit</button>
 
           <div style="margin-top: 10px;">
             Form valid? {{ regForm.$valid }}
           </div>
+
+        </div>
+
       </form>
     </fieldset>
 
-    <div id="info" ng-if="reg.completed">
-      Username: {{ reg.user.username}} <br>
-      Email: {{ reg.user.email}} <br>
-      Phone: {{ reg.user.phone }}
+    <div id="info" ng-if="calcCtrl.completed">
+      Situation: {{ calcCtrl.declSubmitted.situationFamiliale}} <br>
+      Nombre d'enfants: {{ calcCtrl.declSubmitted.nbEnfants}} <br>
+      Garde alternée: {{ calcCtrl.declSubmitted.gardeAlternee }} <br>
+      Salaires: {{ calcCtrl.declSubmitted.salaire }} <br>
+      Charges: {{ calcCtrl.declSubmitted.charges }} <br>
     </div>
 
     <script src="lib/angular.min.js"></script>
