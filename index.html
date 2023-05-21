@@ -33,11 +33,12 @@
               <option value="2">Marié(e)s ou lié(e)s par un PACS</option>
               <option value="3">Veuf(ve)</option>
             </select>
-            <span ng-if="!calcCtrl.decl.situationFamiliale" class="small alert alert-warning">
-              sélectionnez la situation qui vous correspond.
-            </span> 
           </div>
-          <br/>   
+          <span ng-if="!calcCtrl.decl.situationFamiliale" class="small alert alert-warning">
+            sélectionnez la situation qui vous correspond.
+          </span> 
+        <br/>   
+        <br/>   
   
           <div class="input-group">
             <label class="input-group-text">Nombre d'enfants</label><br>
@@ -67,7 +68,7 @@
             <span class="input-group-text">Salaire (net imposable annuel)</span>
             <input type="number"
               min="0"
-              step="1"
+              step="1000"
               name="salaire"
               ng-model="calcCtrl.decl.salaire"
               class="form-control"
@@ -80,7 +81,7 @@
 
           <div class="input-group">
             <span class="input-group-text">Charges & Pensions (que vous payez)</span>
-            <input type="number" min="0" step="1"
+            <input type="number" min="0" step="500"
               ng-model="calcCtrl.decl.charges"
               id="exampleInputAmount"
               class="form-control"
