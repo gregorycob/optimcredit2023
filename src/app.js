@@ -27,17 +27,14 @@ function CalculationController($scope, ImpotService) {
 
   calcCtrl.submit = function () {
     calcCtrl.response = undefined;
-    
-    console.log("submit click");
-    console.log('reg', calcCtrl);
-    console.log('$scope.decl', calcCtrl.decl);
+
     calcCtrl.declSubmitted = JSON.parse(JSON.stringify(calcCtrl.decl));
-    console.log('declSubmitted', calcCtrl.declSubmitted);
+    console.log('cloned form: ', calcCtrl.declSubmitted);
     calcCtrl.completed = true;
 
     var impotResultPromise = ImpotService.getImpot(calcCtrl.declSubmitted);
     impotResultPromise.then(function(responseObj) {
-      console.log("ctrl to process response", responseObj);
+      console.log("copying object to ctrl: ", responseObj);
       calcCtrl.response = responseObj;
     })
   };

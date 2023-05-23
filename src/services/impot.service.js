@@ -13,22 +13,23 @@
         console.log("init ImpotService");
 
         service.getImpot = function(decl) {
+
+            // default values
             var declObj = {
                 "salaire2": 0,
-                "autresRevenus": 600,
-                "reductionImpot": 500,
+                "autresRevenus": 0,
+                "reductionImpot": 0,
               };
 
-            declObj.salaire1 = decl.salaire;
-            if (decl.charges === undefined)
-            {
-                declObj.chargesDeductibles = 0;
-            } else {
-                declObj.chargesDeductibles = Number(decl.charges);
-            }
-            declObj.situationMaritale = 0;
+            // clean data prep
+            declObj.salaire1 = service.numberOrZero(decl.salaire);
+            declObj.nbEnfants = service.numberOrZero(decl.nbEnfants);
+            declObj.chargesDeductibles = service.numberOrZero(decl.charges);
             declObj.situationFamiliale = decl.situationFamiliale;
-            declObj.nbEnfants = Number(decl.nbEnfants);
+            declObj.gardeAlternee = decl.gardeAlternee;
+            
+            // temporary hack
+            declObj.situationMaritale = 0;
             
             console.log("sending request with: ", declObj);
 
@@ -39,9 +40,18 @@
                 url: targetUrl,
                 data: declObj
             }).then(function(response) {
-                    console.log("response", response)
+                    console.log("http response", response)
                     return response.data;
                 });
+        }
+
+        service.numberOrZero = function(obj) {
+            if (obj === undefined)
+                return 0;
+            else if (obj === null)
+                return 0;
+            else
+                return Number(obj);
         }
     }
 
