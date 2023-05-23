@@ -30,9 +30,9 @@
               ng-model="calcCtrl.decl.situationFamiliale"
               placeholder="sélectionnez"
               required>
-              <option value="1">Célibataire ou divorcé(e)</option>
-              <option value="2">Marié(e)s ou lié(e)s par un PACS</option>
-              <option value="3">Veuf(ve)</option>
+              <option value="celibataire">Célibataire ou divorcé(e)</option>
+              <option value="couple">Marié(e)s ou lié(e)s par un PACS</option>
+              <option value="veuf">Veuf(ve)</option>
             </select>
           </div>
           <span ng-if="!calcCtrl.decl.situationFamiliale" class="small alert alert-warning">
@@ -94,6 +94,23 @@
           <br/>
           <br/>
 
+          <div class="container col-md-6"
+          ng-show="calcCtrl.response">
+      
+            <span class="alert alert-info">Voici vos résultats:</span>
+            <table class="table" id="responseTable">
+              <tr>
+                <th scope="row">Revenu Net Imposable</th>
+                <td>{{ calcCtrl.response.revenuNetImposable | number }} &euro;</td>
+              </tr>
+              <tr>
+                <th scope="row">Impôt</th>
+                <td>{{ calcCtrl.response.impot | number }} &euro;</td>
+              </tr>
+            </table>  
+          </div>
+    
+
           <div class="input-group">
             <div class="col-12">
               <button
@@ -111,15 +128,14 @@
       </form>
     </fieldset>
 
-    <div id="info" ng-if="calcCtrl.completed">
-      Situation: {{ calcCtrl.declSubmitted.situationFamiliale}} <br>
-      Nombre d'enfants: {{ calcCtrl.declSubmitted.nbEnfants}} <br>
-      Garde alternée: {{ calcCtrl.declSubmitted.gardeAlternee }} <br>
-      Salaires: {{ calcCtrl.declSubmitted.salaire }} <br>
-      Charges: {{ calcCtrl.declSubmitted.charges }} <br>
-    </div>
+    <br/>
 
+    
     <script src="lib/angular.min.js"></script>
+
+    <script src="src/services/common.module.js"></script>
+    <script src="src/services/impot.service.js"></script>
+
     <script src="src/app.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

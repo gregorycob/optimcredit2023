@@ -1,12 +1,14 @@
 (function () {
 
-angular.module('SimpleFormsApp',[]);
+angular.module('SimpleFormsApp', ['common']);
 
 angular.module('SimpleFormsApp')
 .controller('CalculationController', CalculationController);
 
-CalculationController.$inject = ['$scope'];
-function CalculationController($scope) {
+console.log("load app module");
+
+CalculationController.$inject = ['$scope', 'ImpotService'];
+function CalculationController($scope, ImpotService) {
   var calcCtrl = this;
 
   console.log("init Controller");
@@ -24,12 +26,20 @@ function CalculationController($scope) {
   console.log("default value done");
 
   calcCtrl.submit = function () {
+    calcCtrl.response = undefined;
+    
     console.log("submit click");
     console.log('reg', calcCtrl);
-    console.log('$scope.decl', $scope.decl);
+    console.log('$scope.decl', calcCtrl.decl);
     calcCtrl.declSubmitted = JSON.parse(JSON.stringify(calcCtrl.decl));
     console.log('declSubmitted', calcCtrl.declSubmitted);
     calcCtrl.completed = true;
+
+    var impotResultPromise = ImpotService.getImpot(calcCtrl.declSubmitted);
+    impotResultPromise.then(function(responseObj) {
+      console.log("ctrl to process response", responseObj);
+      calcCtrl.response = responseObj;
+    })
   };
 }
 
