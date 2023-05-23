@@ -113,9 +113,9 @@
     
           <br/>
 
-          <div class="small" ng-if="calcCtrl.response.details">
+          <div class="container cold-md-6 small" ng-if="calcCtrl.response.details">
             <span class="alert alert-info">Détails du calcul</span>
-            <table>
+            <table class="table">
               <tr ng-repeat="row in calcCtrl.response.details.rows">
                 <td ng-if="row.label">
                   {{ row.label }}
