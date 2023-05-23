@@ -43,7 +43,7 @@
   
           <div class="input-group">
             <label class="input-group-text">Nombre d'enfants</label><br>
-            <select class="form-select"
+            <select class="form-select text-center"
               aria-label="Default select example"
               ng-model="calcCtrl.decl.nbEnfants">
               <option value="0">0</option>
@@ -73,7 +73,7 @@
               step="1000"
               name="salaire"
               ng-model="calcCtrl.decl.salaire"
-              class="form-control"
+              class="form-control text-end"
               required>
             <div class="input-group-text">&euro;</div>
           </div>
@@ -86,7 +86,7 @@
             <input type="number" min="0" step="500"
               ng-model="calcCtrl.decl.charges"
               id="exampleInputAmount"
-              class="form-control"
+              class="form-control text-end"
               placeholder="(montant annuel)">
             <div class="input-group-text">&euro;</div>
           </div>
@@ -98,7 +98,7 @@
           <div class="container col-md-6"
           ng-show="calcCtrl.response">
       
-            <span class="alert alert-info">Voici vos résultats:</span>
+            <span class="alert alert-success">Voici vos résultats:</span>
             <table class="table" id="responseTable">
               <tr>
                 <th scope="row">Revenu Net Imposable</th>
@@ -111,19 +111,40 @@
             </table>  
           </div>
     
+          <br/>
 
-          <div class="input-group">
-            <div class="col-12">
-              <button
-                class="btn btn-primary"
-                type="submit"
-                ng-click="calcCtrl.submit()"
-                ng-disabled="regForm.$invalid"
-              >Cacul Impôts</button>
-            </div>
-            <span ng-if="!regForm.$valid" class="small alert alert-warning">Complétez le formulaire</span>  
+          <div class="small" ng-if="calcCtrl.response.details">
+            <span class="alert alert-info">Détails du calcul</span>
+            <table>
+              <tr ng-repeat="row in calcCtrl.response.details.rows">
+                <td ng-if="row.label">
+                  {{ row.label }}
+                </td>
+                <td ng-if="row.label" class="text-end">
+                  {{ calcCtrl.displayNombre(row.nombre) }} {{ row.euros ? '&euro;' : '' }}
+                </td>
+                <td ng-if="row.text" colspan="2">
+                  {{ row.text }}
+                </td>
+              </tr>
+            </table>
           </div>
+        </div>
 
+        <br/>
+
+        <div class="input-group">
+          <div class="col-12">
+            <button
+              class="btn btn-primary"
+              type="submit"
+              ng-click="calcCtrl.submit()"
+              ng-disabled="regForm.$invalid"
+            >
+            {{ calcCtrl.response ? 'Re-calculer' : 'Calcul Impôts' }}
+          </button>
+          </div>
+          <span ng-if="!regForm.$valid" class="small alert alert-warning">Complétez le formulaire</span>  
         </div>
 
       </form>
@@ -133,7 +154,7 @@
 
     
     <script src="lib/angular.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.8/angular-locale_fr-fr.js"></script>
     <script src="src/services/common.module.js"></script>
     <script src="src/services/impot.service.js"></script>
 

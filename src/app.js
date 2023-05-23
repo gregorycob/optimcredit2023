@@ -7,8 +7,8 @@ angular.module('SimpleFormsApp')
 
 console.log("load app module");
 
-CalculationController.$inject = ['$scope', 'ImpotService'];
-function CalculationController($scope, ImpotService) {
+CalculationController.$inject = ['$scope', '$filter','ImpotService'];
+function CalculationController($scope, $filter, ImpotService) {
   var calcCtrl = this;
 
   console.log("init Controller");
@@ -38,6 +38,11 @@ function CalculationController($scope, ImpotService) {
       calcCtrl.response = responseObj;
     })
   };
+
+  calcCtrl.displayNombre = function(x) {
+    var nbStr = $filter('number')(x, 0);
+    return nbStr;
+  }
 }
 
 })();
