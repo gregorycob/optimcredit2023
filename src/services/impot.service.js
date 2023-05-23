@@ -15,11 +15,11 @@
         service.getImpot = function(decl) {
 
             // default values
-            var declObj = {
-                "salaire2": 0,
-                "autresRevenus": 0,
-                "reductionImpot": 0,
-              };
+            var declObj = {};
+
+            //declObj.salaire2 = 0;
+            //declObj.autresRevenus = 0;
+            //declObj.reductionImpot = 0;
 
             // clean data prep
             declObj.salaire1 = service.numberOrZero(decl.salaire);
@@ -27,10 +27,7 @@
             declObj.chargesDeductibles = service.numberOrZero(decl.charges);
             declObj.situationFamiliale = decl.situationFamiliale;
             declObj.gardeAlternee = decl.gardeAlternee;
-            
-            // temporary hack
-            declObj.situationMaritale = 0;
-            
+                        
             console.log("sending request with: ", declObj);
 
             var targetUrl = ApiPath + '/api/Impot';
