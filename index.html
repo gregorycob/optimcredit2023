@@ -79,7 +79,7 @@
             <div class="input-group-text">&euro;</div>
           </div>
 
-          <div class="small">Indiquez votre salaire annuel net imposanle. Le montant affiché équivaut à {{ calcCtrl.arrondi(calcCtrl.decl.salaire / 12) | number}} &euro; net par mois</div>
+          <div class="small">Indiquez votre salaire annuel net imposable. Le montant affiché équivaut à {{ calcCtrl.arrondi(calcCtrl.decl.salaire / 12) | number}} &euro; net par mois</div>
           <br/>
 
           <div class="input-group">
@@ -92,7 +92,7 @@
             <div class="input-group-text">&euro;</div>
           </div>
 
-          <span class="small" ng-if="calcCtrl.decl.charges > 0">Indiquez le total annuel des charges et pensions que vous payez. Le montant affiché annuel équivaut à {{ calcCtrl.arrondi(calcCtrl.decl.charges / 12) | number}} &euro; par mois</span>
+          <span class="small" ng-if="calcCtrl.decl.charges > 0">Indiquez le total annuel des charges et pensions que vous payez. Le montant affiché équivaut à {{ calcCtrl.arrondi(calcCtrl.decl.charges / 12) | number}} &euro; par mois</span>
           <br/>
           <br/>
 
