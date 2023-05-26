@@ -1,0 +1,16 @@
+<div class="container col-md-6"
+ng-show="calcCtrl.response">
+
+  <span class="alert alert-success">Voici vos résultats:</span>
+  <table class="table" id="responseTable">
+    <tr>
+      <th scope="row">Revenu Net Imposable</th>
+      <td>{{ $ctrl.revenuNetImposable | number }} &euro;</td>
+    </tr>
+    <tr>
+      <th scope="row">Impôt</th>
+      <td>{{ $ctrl.response.impot | number }} &euro;</td>
+    </tr>
+  </table>  
+</div>
+
