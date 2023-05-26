@@ -2,8 +2,8 @@
     "use strict";
     
     angular.module('common')
-    .component('calcItem', {
-      templateUrl: 'src/common/calc-item/calc-item.html',
+    .component('calcItems', {
+      templateUrl: 'src/common/calc-items/calc-items.html',
       bindings: {
         details: '<',
         numberDisplay: '&'
