@@ -1,0 +1,17 @@
+<div class="container cold-md-6 small" ng-if="$ctrl.details">
+    <span class="alert alert-info">Détails du calcul</span>
+    <table class="table" id="id-table">
+      <tr ng-repeat="row in $ctrl.details.rows">
+        <td ng-if="row.label">
+          {{ row.label }}
+        </td>
+        <td ng-if="row.label" class="text-end">
+          {{ $ctrl.numberDisplay({x: row.nombre}) }} {{ row.euros ? '&euro;' : '' }}
+        </td>
+        <td ng-if="row.text" colspan="2">
+          {{ row.text }}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
