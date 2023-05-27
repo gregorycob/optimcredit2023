@@ -13,128 +13,7 @@
   </head>
   <body ng-controller="CalculImpotController as calcCtrl">
     
-    <div id="mainbody">
-      <fieldset class="container col-md-6 d-grid gap-2">
-
-        <h1 class="bd-title text-center">Calcul Impôts</h1>
-
-        <legend class="bd-lead text-center">Estimez vos impôts en 1 clic</legend>
-        <br/>
-
-        <div class="small bd-example container text-justify">
-          <p>Pour déclarer, estimer et calculer vos impôts sur les revenus, le site de référence est le site officiel: <a href="http://www.impots.gouv.fr/">http://www.impots.gouv.fr/</a>. Leur site est complet et bien documenté. Notre site vous permet de faire une simulation beaucoup plus rapidement, de manière très simple, en 1 seul clic. Nous offrons le calcul de l'impôt en ligne, gratuitement, depuis plus de 20 ans. Les résultats sont vérifiés chaque année avec le nouveau barème et un ensemble de cas de référence. Testez par vous même, c'est tellement facile!</p>  
-        </div>
-    
-        <form name='regForm' class="needs-validation" novalidate>
-
-          <div>
-
-            <div class="input-group">
-              <label class="input-group-text">Situation Familiale</label><br>
-              <select class="form-select"
-                aria-label="Default select example"
-                ng-model="calcCtrl.decl.situationFamiliale"
-                placeholder="sélectionnez"
-                required>
-                <option value="celibataire">Célibataire ou divorcé(e)</option>
-                <option value="couple">Marié(e)s ou lié(e)s par un PACS</option>
-                <option value="veuf">Veuf(ve)</option>
-              </select>
-            </div>
-            <span ng-if="!calcCtrl.decl.situationFamiliale" class="small alert alert-warning">
-              Indiquez la situation familiale qui vous correspond.
-            </span> 
-
-            <br/>   
-            <br/>   
-    
-            <div class="input-group">
-              <label class="input-group-text">Nombre d'enfants</label><br>
-              <select class="form-select text-center"
-                aria-label="Default select example"
-                ng-model="calcCtrl.decl.nbEnfants">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value=""
-                id="invalidCheck"
-                ng-model="calcCtrl.decl.gardeAlternee"
-                >
-              <label class="form-check-label" for="invalidCheck">
-                Garde alternée
-              </label>
-            </div>
-            <br/>   
-
-            <div class="input-group">
-              <span class="input-group-text">Salaire</span>
-              <input type="number"
-                min="0"
-                step="1000"
-                name="salaire"
-                ng-model="calcCtrl.decl.salaire"
-                class="form-control text-end"
-                required>
-              <div class="input-group-text">&euro;</div>
-            </div>
-
-            <span class="small">
-              Indiquez votre salaire annuel net imposable. Le montant affiché équivaut à {{ calcCtrl.arrondi(calcCtrl.decl.salaire / 12) | number}} &euro; net par mois
-            </span>
-            <br/>
-            <br/>
-
-            <div class="input-group">
-              <span class="input-group-text">Charges</span>
-              <input type="number" min="0" step="500"
-                ng-model="calcCtrl.decl.charges"
-                id="exampleInputAmount"
-                class="form-control text-end"
-                placeholder="(montant annuel)">
-              <div class="input-group-text">&euro;</div>
-            </div>
-
-            <span class="small">
-              Indiquez le total annuel des charges et pensions que vous payez.
-            </span>
-            <span class="small" ng-if="calcCtrl.decl.charges > 0">
-              Le montant affiché équivaut à {{ calcCtrl.arrondi(calcCtrl.decl.charges / 12) | number}} &euro; par mois
-            </span>
-            <br/>
-            <br/>
-
-            <impot-result revenu-net-imposable="calcCtrl.response.revenuNetImposable" impot="calcCtrl.response.impot"></impot-result>
-            <br/>
-
-            <calc-items details="calcCtrl.response.details" number-display="calcCtrl.displayNombre(x)"></calc-items>
-            <br/>
-
-            <div class="input-group">
-              <div class="col-12">
-                <button
-                  class="btn btn-primary"
-                  type="submit"
-                  ng-click="calcCtrl.submit()"
-                  ng-disabled="regForm.$invalid"
-                >
-                {{ calcCtrl.response ? 'Re-calculer' : 'Calcul Impôts' }}
-              </button>
-              </div>
-            </div>
-            <span ng-if="!regForm.$valid" class="small alert alert-warning">Pour compléter le formulaire, indiquez votre situation familiale</span>  
-
-          </div>
-        </form>
-      </fieldset>
-
-    </div>
+    <ui-view></ui-view>
 
     <div style="clear: both; height: 180px;"></div>
 
@@ -155,8 +34,14 @@
       </div>
     </footer>
 
+    <!-- Libs -->
     <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.8/angular-locale_fr-fr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+    <!-- App Module -->
+    <script src="src/app.module.js"></script>
 
     <!-- Common Module -->
     <script src="src/common/common.module.js"></script>
@@ -165,11 +50,7 @@
     <script src="src/common/services/impot.service.js"></script>
     <script src="src/common/calcul-impot/calcul-impot.controller.js"></script>
 
-    <!-- App Module -->
-    <script src="src/app.module.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
+    <!-- External Services -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1420196452085995" crossorigin="anonymous"></script>
   </body>
 </html>

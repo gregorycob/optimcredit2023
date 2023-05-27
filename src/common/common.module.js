@@ -1,7 +1,7 @@
 (function() {
     "use strict";
     
-    angular.module('common', [])
+    angular.module('common', ['ui.router'])
     .constant('ApiPath', 'https://gc-impots-freetry.azurewebsites.net')
     .config(config);
     

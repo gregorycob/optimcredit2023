@@ -2,7 +2,7 @@
     angular.module('common')
     .controller('CalculImpotController', CalculImpotController);
     
-    console.log("load app module");
+    console.log("load CalculImpot controller");
     
     CalculImpotController.$inject = ['$scope', '$filter','ImpotService'];
     function CalculImpotController($scope, $filter, ImpotService) {
