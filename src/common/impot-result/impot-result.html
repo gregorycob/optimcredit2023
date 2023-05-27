@@ -1,6 +1,4 @@
-<div class="container col-md-6"
-ng-show="calcCtrl.response">
-
+<div class="container col-md-6" ng-show="$ctrl.revenuNetImposable > 0">
   <span class="alert alert-success">Voici vos résultats:</span>
   <table class="table" id="responseTable">
     <tr>
@@ -9,7 +7,7 @@ ng-show="calcCtrl.response">
     </tr>
     <tr>
       <th scope="row">Impôt</th>
-      <td>{{ $ctrl.response.impot | number }} &euro;</td>
+      <td>{{ $ctrl.impot | number }} &euro;</td>
     </tr>
   </table>  
 </div>
