@@ -26,7 +26,7 @@
   
       <form name='regForm' class="needs-validation" novalidate>
 
-        <div >
+        <div>
 
           <div class="input-group">
             <label class="input-group-text">Situation Familiale</label><br>
@@ -43,8 +43,9 @@
           <span ng-if="!calcCtrl.decl.situationFamiliale" class="small alert alert-warning">
             Indiquez la situation familiale qui vous correspond.
           </span> 
-        <br/>   
-        <br/>   
+
+          <br/>   
+          <br/>   
   
           <div class="input-group">
             <label class="input-group-text">Nombre d'enfants</label><br>
@@ -83,7 +84,10 @@
             <div class="input-group-text">&euro;</div>
           </div>
 
-          <div class="small">Indiquez votre salaire annuel net imposable. Le montant affiché équivaut à {{ calcCtrl.arrondi(calcCtrl.decl.salaire / 12) | number}} &euro; net par mois</div>
+          <span class="small">
+            Indiquez votre salaire annuel net imposable. Le montant affiché équivaut à {{ calcCtrl.arrondi(calcCtrl.decl.salaire / 12) | number}} &euro; net par mois
+          </span>
+          <br/>
           <br/>
 
           <div class="input-group">
@@ -96,54 +100,36 @@
             <div class="input-group-text">&euro;</div>
           </div>
 
-          <span class="small">Indiquez le total annuel des charges et pensions que vous payez.
-            </span>
-            <span class="small" ng-if="calcCtrl.decl.charges > 0">
+          <span class="small">
+            Indiquez le total annuel des charges et pensions que vous payez.
+          </span>
+          <span class="small" ng-if="calcCtrl.decl.charges > 0">
             Le montant affiché équivaut à {{ calcCtrl.arrondi(calcCtrl.decl.charges / 12) | number}} &euro; par mois
           </span>
           <br/>
           <br/>
 
-          <impot-result
-            revenu-net-imposable="calcCtrl.response.revenuNetImposable"
-            revenuNetImposable="calcCtrl.response.revenuNetImposable"
-            impot="calcCtrl.response.impot"
-            >
-          </impot-result>
-
-          <div class="container col-md-6" ng-show="calcCtrl.response.revenuNetImposable > 0">
-            <span class="alert alert-success">Voici les résultats:</span>
-            <table class="table" id="responseTable">
-              <tr>
-                <th scope="row">Revenu Net Imposable</th>
-                <td>{{ calcCtrl.response.revenuNetImposable | number }} &euro;</td>
-              </tr>
-              <tr>
-                <th scope="row">Impôt</th>
-                <td>{{ calcCtrl.response.impot | number }} &euro;</td>
-              </tr>
-            </table>  
-          </div>
-          
+          <impot-result revenu-net-imposable="calcCtrl.response.revenuNetImposable" impot="calcCtrl.response.impot"></impot-result>
           <br/>
 
-        <calc-items details="calcCtrl.response.details" number-display="calcCtrl.displayNombre(x)"></calc-items>
-        <br/>
+          <calc-items details="calcCtrl.response.details" number-display="calcCtrl.displayNombre(x)"></calc-items>
+          <br/>
 
-        <div class="input-group">
-          <div class="col-12">
-            <button
-              class="btn btn-primary"
-              type="submit"
-              ng-click="calcCtrl.submit()"
-              ng-disabled="regForm.$invalid"
-            >
-            {{ calcCtrl.response ? 'Re-calculer' : 'Calcul Impôts' }}
-          </button>
+          <div class="input-group">
+            <div class="col-12">
+              <button
+                class="btn btn-primary"
+                type="submit"
+                ng-click="calcCtrl.submit()"
+                ng-disabled="regForm.$invalid"
+              >
+              {{ calcCtrl.response ? 'Re-calculer' : 'Calcul Impôts' }}
+            </button>
+            </div>
+            <span ng-if="!regForm.$valid" class="small alert alert-warning">Pour compléter le formulaire, indiquez votre situation familiale</span>  
           </div>
-          <span ng-if="!regForm.$valid" class="small alert alert-warning">Pour compléter le formulaire, indiquez votre situation familiale</span>  
-        </div>
 
+        </div>
       </form>
     </fieldset>
 
