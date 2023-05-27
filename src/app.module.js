@@ -14,11 +14,15 @@ function config($urlRouterProvider, $stateProvider) {
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
-  .state('public', {
+  .state('impot', {
     url: '/',
     templateUrl: 'src/common/calcul-impot/calcul-impot.html',
     controller: 'CalculImpotController',
     controllerAs: 'calcCtrl'
+  })
+  .state('mentionslegales', {
+    url: '/mentions-legales',
+    templateUrl: 'src/common/mentions-legales.html'
   });
 
 }
