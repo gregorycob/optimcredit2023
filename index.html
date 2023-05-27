@@ -106,9 +106,25 @@
 
           <impot-result
             revenu-net-imposable="calcCtrl.response.revenuNetImposable"
+            revenuNetImposable="calcCtrl.response.revenuNetImposable"
             impot="calcCtrl.response.impot"
             >
           </impot-result>
+
+          <div class="container col-md-6" ng-show="calcCtrl.response.revenuNetImposable > 0">
+            <span class="alert alert-success">Voici les résultats:</span>
+            <table class="table" id="responseTable">
+              <tr>
+                <th scope="row">Revenu Net Imposable</th>
+                <td>{{ calcCtrl.response.revenuNetImposable | number }} &euro;</td>
+              </tr>
+              <tr>
+                <th scope="row">Impôt</th>
+                <td>{{ calcCtrl.response.impot | number }} &euro;</td>
+              </tr>
+            </table>  
+          </div>
+          
           <br/>
 
         <calc-items details="calcCtrl.response.details" number-display="calcCtrl.displayNombre(x)"></calc-items>
@@ -140,6 +156,7 @@
     <!-- Common Module -->
     <script src="src/common/common.module.js"></script>
     <script src="src/common/calc-items/calc-items.component.js"></script>
+    <script src="src/common/impot-result/impot-result.component.js"></script>
     <script src="src/common/services/impot.service.js"></script>
 
     <!-- App Module -->
