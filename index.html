@@ -15,11 +15,15 @@
     
     <fieldset class="container col-md-6 d-grid gap-2">
 
-      <h1 class="text-center">Calcul Impôts</h1>
+      <h1 class="bd-title text-center">Calcul Impôts</h1>
 
-      <legend class="text-center">Estimez vos impôts en 1 clic</legend>
+      <legend class="bd-lead text-center">Estimez vos impôts en 1 clic</legend>
       <br/>
 
+      <div class="small bd-example container text-justify">
+        <p>Pour déclarer, estimer et calculer vos impôts sur les revenus, le site de référence est le site officiel: <a href="http://www.impots.gouv.fr/">http://www.impots.gouv.fr/</a>. Leur site est complet et bien documenté. Notre site vous permet de faire une simulation beaucoup plus rapidement, de manière très simple, en 1 seul clic. Nous offrons le calcul de l'impôt en ligne, gratuitement, depuis plus de 20 ans. Les résultats sont vérifiés chaque année avec le nouveau barème et un ensemble de cas de référence. Testez par vous même, c'est tellement facile!</p>  
+      </div>
+  
       <form name='regForm' class="needs-validation" novalidate>
 
         <div >
@@ -92,26 +96,14 @@
             <div class="input-group-text">&euro;</div>
           </div>
 
-          <span class="small" ng-if="calcCtrl.decl.charges > 0">Indiquez le total annuel des charges et pensions que vous payez. Le montant affiché équivaut à {{ calcCtrl.arrondi(calcCtrl.decl.charges / 12) | number}} &euro; par mois</span>
+          <span class="small">Indiquez le total annuel des charges et pensions que vous payez.
+            </span>
+            <span class="small" ng-if="calcCtrl.decl.charges > 0">
+            Le montant affiché équivaut à {{ calcCtrl.arrondi(calcCtrl.decl.charges / 12) | number}} &euro; par mois
+          </span>
           <br/>
           <br/>
 
-          <div class="container col-md-6"
-          ng-show="calcCtrl.response">
-      
-            <span class="alert alert-success">Voici vos résultats:</span>
-            <table class="table" id="responseTable">
-              <tr>
-                <th scope="row">Revenu Net Imposable</th>
-                <td>{{ calcCtrl.response.revenuNetImposable | number }} &euro;</td>
-              </tr>
-              <tr>
-                <th scope="row">Impôt</th>
-                <td>{{ calcCtrl.response.impot | number }} &euro;</td>
-              </tr>
-            </table>  
-          </div>
-    
           <impot-result
             revenu-net-imposable="calcCtrl.response.revenuNetImposable"
             impot="calcCtrl.response.impot"
@@ -133,7 +125,7 @@
             {{ calcCtrl.response ? 'Re-calculer' : 'Calcul Impôts' }}
           </button>
           </div>
-          <span ng-if="!regForm.$valid" class="small alert alert-warning">Complétez le formulaire</span>  
+          <span ng-if="!regForm.$valid" class="small alert alert-warning">Pour compléter le formulaire, indiquez votre situation familiale</span>  
         </div>
 
       </form>
