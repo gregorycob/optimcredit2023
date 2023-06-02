@@ -23,6 +23,12 @@ function config($urlRouterProvider, $stateProvider) {
   .state('mentionslegales', {
     url: '/mentions-legales',
     templateUrl: 'src/common/mentions-legales.html'
+  })
+  .state('renteViagere', {
+    url: '/rente-viagere',
+    templateUrl: 'src/common/rente-viagere/rente-viagere.html',
+    controller: 'CalculRenteViagereController',
+    controllerAs: 'calcCtrl'
   });
 
 }

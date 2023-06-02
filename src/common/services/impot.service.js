@@ -42,6 +42,60 @@
                 });
         }
 
+        service.getRente = function(decl) {
+            var declObj = {};
+            declObj.sexe = decl.sexe;
+            declObj.yearlyAmount = 1000.0;
+            if (decl.indexInflation === true) {
+                declObj.yearlyRate = decl.tauxAnnuel - 2.0;
+            } else {
+                declObj.yearlyRate = decl.tauxAnnuel;
+            }
+            declObj.age = decl.age;
+
+            console.log("sending request with: ", declObj);
+
+            var targetUrl = ApiPath + '/api/PresentValue';
+
+            return $http({
+                method: 'POST',
+                url: targetUrl,
+                data: declObj
+            }).then(function(response) {
+                    console.log("http response", response)
+                    response.data.renteMensuelle = 1000.0 * decl.capital / response.data.presentValue / 12.0;
+                    console.log("rente: ", response.data.renteMensuelle);
+                    return response.data;
+                });
+            
+        }
+
+        service.getCapital = function(decl) {
+            var declObj = {};
+            declObj.sexe = decl.sexe;
+            declObj.yearlyAmount = decl.renteMensuelle * 12.0;
+            if (decl.indexInflation === true) {
+                declObj.yearlyRate = decl.tauxAnnuel - 2.0;
+            } else {
+                declObj.yearlyRate = decl.tauxAnnuel;
+            }
+            declObj.age = decl.age;
+
+            console.log("sending request with: ", declObj);
+
+            var targetUrl = ApiPath + '/api/PresentValue';
+
+            return $http({
+                method: 'POST',
+                url: targetUrl,
+                data: declObj
+            }).then(function(response) {
+                    console.log("http response", response)
+                    return response.data;
+                });
+            
+        }
+
         service.numberOrZero = function(obj) {
             if (obj === undefined)
                 return 0;

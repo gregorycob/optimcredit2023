@@ -1,0 +1,105 @@
+<div id="mainbody">
+    <fieldset class="container col-md-6 d-grid gap-2">
+
+      <h1 class="bd-title text-center">Rente Viagère</h1>
+
+      <legend class="bd-lead text-center">Assurez-vous contre les générosités de Dame Nature</legend>
+      <br/>
+
+      <div class="small bd-example container text-justify">
+        <p>Le principe d'une rente viagère est de vous assurer un revenu chaque mois jusqu'à la fin de vos jours.</p>
+        <p>La rente viagère, garantie par un assureur, a pour objectif de vous protéger contre les bienfaits de Dame Nature qui pourrait vous offrir une vie bien plus longue que prévue, vous laissant démuni une fois vos réserves financières épuisées.</p>
+        <p>L'idée est donc de prendre un capital dont vous disposez, de répartir ce capital en mensualités calculées selon l'espérance de vie, et à partir de là c'est l'assureur qui prend le risque Dame Nature soit "trop" généreuse avec vous.</p>
+        <p>Vous pouvez donc vous demander:</p>
+        <ul>
+          <li>Avec le capital dont je dispose, quelle pourrait être ma rente ?</li>
+          <li>De quel capital dois-je disposer pour avoir un certain montant chaque mois, sous forme de rente à vie ?</li>
+        </ul>
+
+      </div>
+  
+      <form name='regForm' class="needs-validation" novalidate>
+
+        <div>
+
+          <div class="input-group">
+            <label class="form-label">Âge : {{ calcCtrl.rente.age }} ans</label>
+            <input type="range" class="form-range" min="0" max="90" step="1" ng-model="calcCtrl.rente.age">
+          </div>
+          <span class="small alert alert-warning">
+            Indiquez l'âge auquel vous voulez convertir le capital en rente
+          </span> 
+
+          <br/>   
+          <br/>   
+  
+          <div class="input-group">
+            <span class="input-group-text">Capital à convertir</span>
+            <input type="number"
+              min="0"
+              step="10000"
+              ng-model="calcCtrl.rente.capital"
+              class="form-control text-end"
+              required>
+            <div class="input-group-text">&euro;</div>
+            <button
+            class="btn btn-primary"
+            type="submit"
+            ng-click="calcCtrl.recalcCapital()"
+            >
+              Calculer
+            </button>
+          </div>
+          <span class="small alert alert-warning">Indiquez le capital à convertir, ou alors calculez le capital selon la rente souhaitée</span>  
+
+          <br/>
+          <br/>
+
+          <div class="input-group">
+            <span class="input-group-text">Rente à percevoir</span>
+            <input type="number"
+              min="0"
+              step="500"
+              ng-model="calcCtrl.rente.renteMensuelle"
+              class="form-control text-end"
+              required>
+            <div class="input-group-text">&euro; / mois</div>
+            <button
+            class="btn btn-primary"
+            type="submit"
+            ng-click="calcCtrl.recalcRente()"
+            >
+              Calculer
+            </button>
+          </div>
+          <span class="small alert alert-warning">Indiquez la rente souhaitée, ou alors calculez la rente selon le capital disponible</span>  
+
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value=""
+              id="invalidCheck"
+              ng-model="calcCtrl.rente.indexInflation"
+              >
+            <label class="form-check-label" for="invalidCheck">
+              Rente indexée sur l'inflation (cible: 2%)
+            </label>
+          </div>
+
+          <br/>   
+          
+          <div class="input-group">
+            <span class="input-group-text">Taux d'intérêt en cours</span>
+            <input type="number"
+              min="0"
+              step="0.05"
+              ng-model="calcCtrl.rente.tauxAnnuel"
+              class="form-control text-end"
+              required>
+            <div class="input-group-text">%</div>
+          </div>
+          <span class="small alert alert-warning">Prenez pour référence le <a href="https://www.aft.gouv.fr/" target="_blank">taux des emprunts d'état</a>.</span>  
+        </div>
+      </form>
+    </fieldset>
+
+  </div>
