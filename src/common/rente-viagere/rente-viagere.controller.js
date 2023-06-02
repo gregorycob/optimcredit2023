@@ -15,6 +15,7 @@
         capital: 80000,
         indexInflation: true,
         tauxAnnuel: 3.3,
+        renteMensuelle: 369.0,
         sexe: "Homme"
       }
     
