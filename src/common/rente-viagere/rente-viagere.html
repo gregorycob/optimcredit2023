@@ -26,13 +26,34 @@
             <label class="form-label">Âge : {{ calcCtrl.rente.age }} ans</label>
             <input type="range" class="form-range" min="0" max="90" step="1" ng-model="calcCtrl.rente.age">
           </div>
-          <span class="small alert alert-warning">
+          <span class="small alert alert-light">
             Indiquez l'âge auquel vous voulez convertir le capital en rente
           </span> 
 
           <br/>   
           <br/>   
-  
+
+          <label class="form-label">Sexe:</label><br/>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" ng-model="calcCtrl.rente.sexe" value="Homme" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Homme
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" ng-model="calcCtrl.rente.sexe" value="Femme" name="flexRadioDefault" id="flexRadioDefault2">
+            <label class="form-check-label" for="flexRadioDefault2">
+              Femme
+            </label>
+          </div>  
+          <span class="small alert alert-light">
+            Le calcul est déterminé par les tables de vie l'INSEE pour les hommes et les femmes.
+          </span> 
+
+          
+          <br/>   
+          <br/>   
+          
           <div class="input-group">
             <span class="input-group-text">Capital à convertir</span>
             <input type="number"
@@ -50,7 +71,7 @@
               Calculer
             </button>
           </div>
-          <span class="small alert alert-warning">Indiquez le capital à convertir, ou alors calculez le capital selon la rente souhaitée</span>  
+          <span class="small alert alert-light">Indiquez le capital à convertir, ou alors calculez le capital selon la rente souhaitée</span>  
 
           <br/>
           <br/>
@@ -72,7 +93,7 @@
               Calculer
             </button>
           </div>
-          <span class="small alert alert-warning">Indiquez la rente souhaitée, ou alors calculez la rente selon le capital disponible</span>  
+          <span class="small alert alert-light">Indiquez la rente souhaitée, ou alors calculez la rente selon le capital disponible</span>  
 
 
           <div class="form-check">
@@ -97,7 +118,7 @@
               required>
             <div class="input-group-text">%</div>
           </div>
-          <span class="small alert alert-warning">Prenez pour référence le <a href="https://www.aft.gouv.fr/" target="_blank">taux des emprunts d'état</a>.</span>  
+          <span class="small alert alert-light">Prenez pour référence les <a href="https://www.aft.gouv.fr/" target="_blank">taux des emprunts d'état</a>.</span>  
         </div>
       </form>
     </fieldset>
