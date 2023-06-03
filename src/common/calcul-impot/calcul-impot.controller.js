@@ -4,8 +4,8 @@
     
     console.log("load CalculImpot controller");
     
-    CalculImpotController.$inject = ['$scope', '$filter','ImpotService'];
-    function CalculImpotController($scope, $filter, ImpotService) {
+    CalculImpotController.$inject = ['$scope', '$filter','OptimCreditAPIService'];
+    function CalculImpotController($scope, $filter, OptimCreditAPIService) {
       var calcCtrl = this;
     
       console.log("init Controller");
@@ -29,7 +29,7 @@
         console.log('cloned form: ', calcCtrl.declSubmitted);
         calcCtrl.completed = true;
     
-        var impotResultPromise = ImpotService.getImpot(calcCtrl.declSubmitted);
+        var impotResultPromise = OptimCreditAPIService.getImpot(calcCtrl.declSubmitted);
         impotResultPromise.then(function(responseObj) {
           console.log("copying object to ctrl: ", responseObj);
           calcCtrl.response = responseObj;

@@ -2,15 +2,15 @@
     "use strict";
         
     angular.module('common')
-    .service('ImpotService', ImpotService);
+    .service('OptimCreditAPIService', OptimCreditAPIService);
     
-    console.log("load ImpotService");
+    console.log("load OptimCreditAPIService");
     
-    ImpotService.$inject = ['$http', 'ApiPath'];
-    function ImpotService($http, ApiPath) {
+    OptimCreditAPIService.$inject = ['$http', 'ApiPath'];
+    function OptimCreditAPIService($http, ApiPath) {
         var service = this;
 
-        console.log("init ImpotService");
+        console.log("init OptimCreditAPIService");
 
         service.getImpot = function(decl) {
 

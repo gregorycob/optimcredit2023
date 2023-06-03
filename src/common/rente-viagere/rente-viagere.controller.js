@@ -4,8 +4,8 @@
     
     console.log("load CalculRenteViagere controller");
     
-    CalculRenteViagereController.$inject = ['$scope', '$filter','ImpotService'];
-    function CalculRenteViagereController($scope, $filter, ImpotService) {
+    CalculRenteViagereController.$inject = ['$scope', '$filter','OptimCreditAPIService'];
+    function CalculRenteViagereController($scope, $filter, OptimCreditAPIService) {
       var calcCtrl = this;
     
       console.log("init CalculRenteViagere RController");
@@ -26,7 +26,7 @@
       console.log("default value done");
     
       calcCtrl.recalcRente = function () {
-        var impotResultPromise = ImpotService.getRente(calcCtrl.rente);
+        var impotResultPromise = OptimCreditAPIService.getRente(calcCtrl.rente);
         impotResultPromise.then(function(responseObj) {
           console.log("copying object to ctrl");
           calcCtrl.rente.renteMensuelle = Math.round(responseObj.renteMensuelle);
@@ -34,7 +34,7 @@
       };
 
       calcCtrl.recalcCapital = function () {
-        var impotResultPromise = ImpotService.getCapital(calcCtrl.rente);
+        var impotResultPromise = OptimCreditAPIService.getCapital(calcCtrl.rente);
         impotResultPromise.then(function(responseObj) {
           console.log("copying object to ctrl");
           calcCtrl.rente.capital = Math.round(responseObj.presentValue);
