@@ -11,11 +11,11 @@ function config($urlRouterProvider, $stateProvider) {
     console.log("load app config");
 
     // If user goes to a path that doesn't exist, redirect to public root
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/calcul-impot-sur-les-revenus');
 
   $stateProvider
   .state('impot', {
-    url: '/',
+    url: '/calcul-impot-sur-les-revenus',
     templateUrl: 'src/common/calcul-impot/calcul-impot.html',
     controller: 'CalculImpotController',
     controllerAs: 'calcCtrl'
