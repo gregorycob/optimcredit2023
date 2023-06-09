@@ -17,10 +17,12 @@
         charges: {
           creditsDepenses: 500
         },
-        investissements: {
-          loyers: 500,
-          credits: 500
-        }
+        investissements: [
+          {
+            loyer: 650,
+            credit: 450
+          }
+        ]
       }
     
       calcCtrl.arrondi = function(x) {
@@ -29,24 +31,24 @@
     
       console.log("default value done");
     
-      calcCtrl.recalcRente = function () {
-        var impotResultPromise = OptimCreditAPIService.getRente(calcCtrl.rente);
+      calcCtrl.submit = function () {
+        var impotResultPromise = OptimCreditAPIService.getTauxEndettement(calcCtrl.decl);
         impotResultPromise.then(function(responseObj) {
-          console.log("copying object to ctrl");
-          calcCtrl.rente.renteMensuelle = Math.round(responseObj.renteMensuelle);
-        })
-      };
-
-      calcCtrl.recalcCapital = function () {
-        var impotResultPromise = OptimCreditAPIService.getCapital(calcCtrl.rente);
-        impotResultPromise.then(function(responseObj) {
-          console.log("copying object to ctrl");
-          calcCtrl.rente.capital = Math.round(responseObj.presentValue);
+          // calcCtrl.scenarios = responseObj; // this will not work - cannot use array of object with ng-repeat
+          console.log("copying response as array of object into a list");
+          var scenarioList = [];
+          for(var o in responseObj.scenarios) {
+            scenarioList.push(responseObj.scenarios[o]);
+          }
+          calcCtrl.scenarios = scenarioList;
+          console.log("calcCtrl.scenarios is now: ", calcCtrl.scenarios);
         })
       };
 
       calcCtrl.displayNombre = function(x) {
+        console.log("tentative affichage: ", x);
         var nbStr = $filter('number')(x, 0);
+        console.log("resultat: ", nbStr);
         return nbStr;
       }
     }

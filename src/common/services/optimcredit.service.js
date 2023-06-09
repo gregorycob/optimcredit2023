@@ -96,6 +96,22 @@
             
         }
 
+        service.getTauxEndettement = function(obj) {
+            var objCopy = JSON.parse(JSON.stringify(obj));
+            console.log('getTauxEndettement - sending: ', objCopy);    
+            
+            var targetUrl = ApiPath + '/api/TauxEndettement';
+
+            return $http({
+                method: 'POST',
+                url: targetUrl,
+                data: objCopy
+            }).then(function(response) {
+                    console.log("http response", response)
+                    return response.data;
+                });
+        }
+
         service.numberOrZero = function(obj) {
             if (obj === undefined)
                 return 0;

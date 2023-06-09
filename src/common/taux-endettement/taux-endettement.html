@@ -51,7 +51,7 @@
         <br/>   
         <br/>   
 
-        <h2>Vos dépenses</h2>
+        <h2>Vos charges financières</h2>
         <div>
 
           <br/>   
@@ -116,7 +116,7 @@
           <br/>
           <br/>
 
-          <h2>Vos investissements</h2>
+          <h2>Vos investissements locatifs</h2>
           <div>
 
             <br/>
@@ -126,7 +126,7 @@
               <input type="number"
                 min="0"
                 step="500"
-                ng-model="calcCtrl.decl.investissements.loyers"
+                ng-model="calcCtrl.decl.investissements[0].loyer"
                 class="form-control text-end"
                 required>
               <div class="input-group-text">&euro; / mois</div>
@@ -141,7 +141,7 @@
               <input type="number"
                 min="0"
                 step="500"
-                ng-model="calcCtrl.decl.investissements.credits"
+                ng-model="calcCtrl.decl.investissements[0].credit"
                 class="form-control text-end"
                 required>
               <div class="input-group-text">&euro; / mois</div>
@@ -150,21 +150,40 @@
 
           <br/>   
           <br/>   
-          
+
+            <div class="container cold-md-6 small" ng-if="calcCtrl.scenarios">
+              <span class="alert alert-info">Votre capacité d'emprunt</span>
+              <table class="table" id="id-table">
+                <tr ng-repeat="row in calcCtrl.scenarios">
+                  <td>
+                    Calcul {{ row.name }}
+                  </td>
+                  <td>
+                    {{ calcCtrl.displayNombre(row.capaciteEmprunt) }} &euro;/mois
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <br/>
+          <br/>
+
           <div class="input-group">
             <div class="col-12">
               <button
                 class="btn btn-primary"
                 type="submit"
                 ng-click="calcCtrl.submit()"
-                ng-disabled="regForm.$invalid"
               >
-              Calculer le taux d'endettement et capacité d'emprunt
+              {{ calcCtrl.scenarios ? "Re-" : "" }}Calculer le taux d'endettement et capacité d'emprunt
             </button>
             </div>
           </div>
 
+
       </form>
     </fieldset>
+
 
   </div>
