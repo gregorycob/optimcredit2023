@@ -1,0 +1,170 @@
+<div id="mainbody">
+
+    <fieldset class="container col-md-6 d-grid gap-2">
+
+      <h1 class="bd-title text-center">Taux d'Endettement</h1>
+
+      <legend class="bd-lead text-center">Combien pouvez-vous emprunter ?</legend>
+      <br/>
+
+      <div class="small bd-example container text-justify">
+        <p>Le principe du taux d'endettement est de vous assurer que vous n'aurez pas trop de crédits à rembourser, afin de ne pas vous mettre en difficulté.</p>
+        <p>Les banques vont donc calculer votre <b>capacité d'emprunt</b> en comparant les revenus que vous recevez, et les charges et crédits sur lesquels vous êtes fermement engagé(e)s.</p>
+        <p>Selon les banques et selon les périodes, le calcul peut varier et donnera différents résultats qui correspondent à différents niveaux de risque.</p>
+        <p>Notre calculateur vous aider à faire le point et vous donne des répères sur ce que vous pourrez obtenir.</p>
+
+      </div>
+  
+      <form name='regForm' class="needs-validation" novalidate>
+
+        <h2>Vos revenus</h2>
+
+        <br/>
+
+        <div class="input-group">
+          <span class="input-group-text">Revenus</span>
+          <input type="number"
+            min="0"
+            step="1000"
+            ng-model="calcCtrl.decl.revenus.salaires"
+            class="form-control text-end"
+            required>
+          <div class="input-group-text">&euro; / mois</div>
+        </div>
+        <span class="small alert alert-light">Indiquez vos revenus, salaire ou retraite avant impôts</span>  
+
+        <br/>
+        <br/>
+
+        <div class="input-group">
+          <span class="input-group-text">Pension(s)</span>
+          <input type="number"
+            min="0"
+            step="500"
+            ng-model="calcCtrl.decl.revenus.pensions"
+            class="form-control text-end"
+            required>
+          <div class="input-group-text">&euro; / mois</div>
+        </div>
+        <span class="small alert alert-light">Indiquez si vous recevez une pension alimentaire ou autre allocation</span>  
+
+        <br/>   
+        <br/>   
+
+        <h2>Vos dépenses</h2>
+        <div>
+
+          <br/>   
+
+          <div class="input-group">
+            <span class="input-group-text">Crédit(s) de dépenses</span>
+            <input type="number"
+              min="0"
+              step="500"
+              ng-model="calcCtrl.decl.charges.creditsDepenses"
+              class="form-control text-end"
+              required>
+            <div class="input-group-text">&euro; / mois</div>
+          </div>
+          <span class="small alert alert-light">Indiquez la mensualité de vos crédit auto, conso</span>  
+
+          <br/>   
+          <br/>   
+
+          <div class="input-group">
+            <span class="input-group-text">Crédit(s) de résidence</span>
+            <input type="number"
+              min="0"
+              step="500"
+              ng-model="calcCtrl.decl.charges.creditsResidences"
+              class="form-control text-end"
+              required>
+            <div class="input-group-text">&euro; / mois</div>
+          </div>
+          <span class="small alert alert-light">Indiquez vos crédit immo pour résidence secondaire, principale ou autre</span>  
+
+          <br/>   
+          <br/>   
+
+          <div class="input-group">
+            <span class="input-group-text">Loyer(s)</span>
+            <input type="number"
+              min="0"
+              step="500"
+              ng-model="calcCtrl.decl.charges.loyers"
+              class="form-control text-end"
+              required>
+            <div class="input-group-text">&euro; / mois</div>
+          </div>
+          <span class="small alert alert-light">Indiquez le(s) loyer(s) que vous continuerez à payer après l'emprunt visé.</span>  
+
+          <br/>   
+          <br/>   
+
+          <div class="input-group">
+            <span class="input-group-text">Pension(s)</span>
+            <input type="number"
+              min="0"
+              step="500"
+              ng-model="calcCtrl.decl.charges.pensions"
+              class="form-control text-end"
+              required>
+            <div class="input-group-text">&euro; / mois</div>
+          </div>
+          <span class="small alert alert-light">Indiquez si vous payez une pension alimentaire ou autre</span>  
+  
+          <br/>
+          <br/>
+
+          <h2>Vos investissements</h2>
+          <div>
+
+            <br/>
+            
+            <div class="input-group">
+              <span class="input-group-text">Loyer(s)</span>
+              <input type="number"
+                min="0"
+                step="500"
+                ng-model="calcCtrl.decl.investissements.loyers"
+                class="form-control text-end"
+                required>
+              <div class="input-group-text">&euro; / mois</div>
+            </div>
+            <span class="small alert alert-light">Indiquez les loyez que vous recevez de vos locataires</span>  
+
+            <br/>
+            <br/>
+            
+            <div class="input-group">
+              <span class="input-group-text">Crédit Immo(s)</span>
+              <input type="number"
+                min="0"
+                step="500"
+                ng-model="calcCtrl.decl.investissements.credits"
+                class="form-control text-end"
+                required>
+              <div class="input-group-text">&euro; / mois</div>
+            </div>
+            <span class="small alert alert-light">Indiquez les crédit rattachés à vos investissements immobiliers et loyers reçus.</span>  
+
+          <br/>   
+          <br/>   
+          
+          <div class="input-group">
+            <div class="col-12">
+              <button
+                class="btn btn-primary"
+                type="submit"
+                ng-click="calcCtrl.submit()"
+                ng-disabled="regForm.$invalid"
+              >
+              Calculer le taux d'endettement et capacité d'emprunt
+            </button>
+            </div>
+          </div>
+
+      </form>
+    </fieldset>
+
+  </div>

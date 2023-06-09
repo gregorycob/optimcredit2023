@@ -29,6 +29,12 @@ function config($urlRouterProvider, $stateProvider) {
     templateUrl: 'src/common/rente-viagere/rente-viagere.html',
     controller: 'CalculRenteViagereController',
     controllerAs: 'calcCtrl'
+  })
+  .state('tauxEndettement', {
+    url: '/taux-endettement',
+    templateUrl: 'src/common/taux-endettement/taux-endettement.html',
+    controller: 'CalculTauxEndettementController',
+    controllerAs: 'calcCtrl'
   });
 
 }
