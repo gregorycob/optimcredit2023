@@ -151,18 +151,48 @@
           <br/>   
           <br/>   
 
-            <div class="container cold-md-6 small" ng-if="calcCtrl.scenarios">
-              <span class="alert alert-info">Votre capacité d'emprunt</span>
-              <table class="table" id="id-table">
-                <tr ng-repeat="row in calcCtrl.scenarios">
-                  <td>
-                    Calcul {{ row.name }}
-                  </td>
-                  <td>
-                    {{ calcCtrl.displayNombre(row.capaciteEmprunt) }} &euro;/mois
-                  </td>
-                </tr>
-              </table>
+          <span class="alert alert-info" ng-if="calcCtrl.scenarios">
+            Résumé - Votre capacité d'emprunt
+          </span>
+          <table class="table" id="id-table">
+            <tr ng-repeat="row in calcCtrl.scenarios">
+              <td>
+                {{ row.name }}
+              </td>
+              <td>
+                {{ calcCtrl.displayNombre(row.capaciteEmprunt) }} &euro;/mois
+              </td>
+            </tr>
+          </table>
+
+          <div class="container cold-md-6 small" ng-if="calcCtrl.scenarios">
+            <div ng-repeat="row in calcCtrl.scenarios">
+              <span class="alert alert-info">Explications - Calcul {{ row.name }}</span>
+              <p>
+                Avec un calcul
+                "{{ row.name }}", nous allons compter pour vos revenus:
+              </p>
+              <ul>
+                <li ng-repeat="r in row.revenus">
+                  {{ r.type }}: 
+                  {{ calcCtrl.displayNombre(r.montant) }} &euro;/mois
+                </li>
+              </ul>
+              <p>
+                et pour vos charges financières
+              </p>
+              <ul>
+                <li ng-repeat="rr in row.chargesFinancieres">
+                  {{ rr.type }}: 
+                  {{ calcCtrl.displayNombre(rr.montant) }} &euro;/mois
+                </li>
+              </ul>
+              <p>
+                ce qui vous fait taux d'endettement de
+                {{ calcCtrl.displayNombre(row.tauxEndettement * 100)}} %
+                et il vous reste une capacité d'emprunt de
+                {{ calcCtrl.displayNombre(row.capaciteEmprunt) }} &euro;/mois  
+              </p>
             </div>
           </div>
 
