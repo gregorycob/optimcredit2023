@@ -46,9 +46,7 @@
       };
 
       calcCtrl.displayNombre = function(x) {
-        console.log("tentative affichage: ", x);
         var nbStr = $filter('number')(x, 0);
-        console.log("resultat: ", nbStr);
         return nbStr;
       }
     }
