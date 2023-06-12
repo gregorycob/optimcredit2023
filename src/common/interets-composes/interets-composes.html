@@ -1,0 +1,122 @@
+<div id="mainbody">
+
+    <fieldset class="container col-md-4 d-grid gap-2">
+
+      <h1 class="bd-title text-center">Intérêts Composés</h1>
+
+      <legend class="bd-lead text-center">Comprenez la valorisation de votre épargne dans le temps</legend>
+      <br/>
+
+      <div class="small bd-example container text-justify">
+        <p>Le principe est connu: "le temps, c'est de l'argent". Vous le savez lorsque vous empruntez, les intérêts payés à la banque sont une grande part de vos dépenses.</p>
+        <p>Lorsque vous épargnez, <b>les intérêts doivent jouer en votre faveur</b> et valoriser votre épargne année après année. Ce formulaire doit vous permettre d'effectuer un calcul rapide et précis.</p>
+      </div>
+  
+      <form name='regForm' class="needs-validation" novalidate>
+
+        <div>
+                    
+          <div class="input-group">
+            <span class="input-group-text">Capital initial</span>
+            <input type="number"
+              min="0"
+              step="10000"
+              ng-model="calcCtrl.ic.capital"
+              ng-change="calcCtrl.calculForward()"
+              class="form-control text-end"
+              required>
+            <div class="input-group-text">&euro;</div>
+          </div>
+          <span class="small alert alert-light">Indiquez le capital déjà disponible</span>  
+
+          <br/>
+          <br/>
+
+          <div class="input-group">
+            <span class="input-group-text">Epargne</span>
+            <input type="number"
+              min="0"
+              step="250"
+              ng-model="calcCtrl.ic.epargneMensuelle"
+              ng-change="calcCtrl.calculForward()"
+              class="form-control text-end"
+              required>
+            <div class="input-group-text">&euro; / mois</div>
+          </div>
+          <span class="small alert alert-light">Indiquez le montant que vous pouvez mettre de côté chaque mois</span>  
+
+          <br/>   
+          
+          <div class="input-group">
+            <label class="form-label">Taux d'intérêts : {{ calcCtrl.ic.tauxAnnuel }} %/an</label>
+            <input type="range" class="form-range"
+              min="0"
+              max="10"
+              step="0.05"
+              ng-model="calcCtrl.ic.tauxAnnuel"
+              ng-change="calcCtrl.calculForward()"
+              >
+          </div>
+          <span class="small alert alert-light">
+            Indiquez les taux d'intérêts applicables à votre épargne. Une bonne référence d'utiliser soit les <a href="https://www.aft.gouv.fr/" target="_blank">taux des emprunts d'état</a>, soit les 8% de taux moyen de rendement des actions.
+          </span> 
+
+          <br/>   
+          <br/>   
+
+          <div class="input-group">
+            <span class="input-group-text">Patrimoine à 5 ans</span>
+            <input type="number"
+              min="0"
+              step="0.05"
+              ng-model="calcCtrl.resultats.r5y.capitalEnd"
+              class="form-control text-end bg-light"
+              readonly
+              required>
+            <div class="input-group-text">&euro;</div>
+          </div>
+          <span class="small alert alert-light">
+            Dont {{ calcCtrl.resultats.r5y.epargne }} &euro; épargnés
+            et {{ calcCtrl.resultats.r5y.interestGains }} &euro; gagnés grâce aux intérêts.</span>  
+
+          <div class="input-group">
+            <span class="input-group-text">Patrimoine à 10 ans</span>
+            <input type="number"
+              min="0"
+              step="0.05"
+              ng-model="calcCtrl.rente.capital10y"
+              class="form-control text-end bg-light"
+              required>
+            <div class="input-group-text">&euro;</div>
+          </div>
+          <span class="small alert alert-light">Donc XXX épargnés et XXX gagnés grâce aux intérêts.</span>  
+
+          <div class="input-group">
+            <span class="input-group-text">Patrimoine à 15 ans</span>
+            <input type="number"
+              min="0"
+              step="0.05"
+              ng-model="calcCtrl.rente.capital15y"
+              class="form-control text-end bg-light"
+              required>
+            <div class="input-group-text">&euro;</div>
+          </div>
+          <span class="small alert alert-light">Donc XXX épargnés et XXX gagnés grâce aux intérêts.</span>  
+
+          <div class="input-group">
+            <span class="input-group-text">Patrimoine à 20 ans</span>
+            <input type="number"
+              min="0"
+              step="0.05"
+              ng-model="calcCtrl.rente.capita20y"
+              class="form-control text-end bg-light"
+              required>
+            <div class="input-group-text">&euro;</div>
+          </div>
+          <span class="small alert alert-light">Donc XXX épargnés et XXX gagnés grâce aux intérêts.</span>  
+
+        </div>
+      </form>
+    </fieldset>
+
+  </div>

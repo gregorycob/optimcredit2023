@@ -30,6 +30,12 @@ function config($urlRouterProvider, $stateProvider) {
     controller: 'CalculRenteViagereController',
     controllerAs: 'calcCtrl'
   })
+  .state('interetsComposes', {
+    url: '/interets-composes',
+    templateUrl: 'src/common/interets-composes/interets-composes.html',
+    controller: 'CalculInteretsComposesController',
+    controllerAs: 'calcCtrl'
+  })
   .state('tauxEndettement', {
     url: '/taux-endettement',
     templateUrl: 'src/common/taux-endettement/taux-endettement.html',
