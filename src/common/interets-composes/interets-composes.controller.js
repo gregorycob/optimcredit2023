@@ -64,6 +64,9 @@
         var nbStr = $filter('number')(x, 0);
         return nbStr;
       }
+
+
+    calcCtrl.calculForward();
     }
     
     })();
