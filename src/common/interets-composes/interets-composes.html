@@ -1,6 +1,6 @@
 <div id="mainbody">
 
-    <fieldset class="container col-md-4 d-grid gap-2">
+    <fieldset class="container col-md-6 d-grid gap-2">
 
       <h1 class="bd-title text-center">Intérêts Composés</h1>
 
@@ -64,56 +64,10 @@
           <br/>   
           <br/>   
 
-          <div class="input-group">
-            <span class="input-group-text">Patrimoine à 5 ans</span>
-            <input type="number"
-              min="0"
-              step="0.05"
-              ng-model="calcCtrl.resultats.r5y.capitalEnd"
-              class="form-control text-end bg-light"
-              readonly
-              required>
-            <div class="input-group-text">&euro;</div>
-          </div>
-          <span class="small alert alert-light">
-            Dont {{ calcCtrl.resultats.r5y.epargne }} &euro; épargnés
-            et {{ calcCtrl.resultats.r5y.interestGains }} &euro; gagnés grâce aux intérêts.</span>  
-
-          <div class="input-group">
-            <span class="input-group-text">Patrimoine à 10 ans</span>
-            <input type="number"
-              min="0"
-              step="0.05"
-              ng-model="calcCtrl.rente.capital10y"
-              class="form-control text-end bg-light"
-              required>
-            <div class="input-group-text">&euro;</div>
-          </div>
-          <span class="small alert alert-light">Donc XXX épargnés et XXX gagnés grâce aux intérêts.</span>  
-
-          <div class="input-group">
-            <span class="input-group-text">Patrimoine à 15 ans</span>
-            <input type="number"
-              min="0"
-              step="0.05"
-              ng-model="calcCtrl.rente.capital15y"
-              class="form-control text-end bg-light"
-              required>
-            <div class="input-group-text">&euro;</div>
-          </div>
-          <span class="small alert alert-light">Donc XXX épargnés et XXX gagnés grâce aux intérêts.</span>  
-
-          <div class="input-group">
-            <span class="input-group-text">Patrimoine à 20 ans</span>
-            <input type="number"
-              min="0"
-              step="0.05"
-              ng-model="calcCtrl.rente.capita20y"
-              class="form-control text-end bg-light"
-              required>
-            <div class="input-group-text">&euro;</div>
-          </div>
-          <span class="small alert alert-light">Donc XXX épargnés et XXX gagnés grâce aux intérêts.</span>  
+          <capital-result calc-result="calcCtrl.resultats.r5y"></capital-result>
+          <capital-result calc-result="calcCtrl.resultats.r10y"></capital-result>
+          <capital-result calc-result="calcCtrl.resultats.r15y"></capital-result>
+          <capital-result calc-result="calcCtrl.resultats.r20y"></capital-result>
 
         </div>
       </form>
