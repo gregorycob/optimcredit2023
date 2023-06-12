@@ -27,7 +27,7 @@
         if (compoundFactor == 1.0) {
           return nbPeriods;
         }
-        return (Math.pow(compoundFactor, nbPeriods + 1.0) - 1.0) / (compoundFactor - 1.0);
+        return (Math.pow(compoundFactor, nbPeriods) - 1.0) / (compoundFactor - 1.0);
       }
 
       calcCtrl.getForecast = function(compoundFactor, initialCapital, monthlyPayment, nbYears) {
