@@ -112,6 +112,34 @@
                 });
         }
 
+
+        service.arithFactor = function(compoundFactor, nbPeriods) {
+            if (compoundFactor == 1.0) {
+              return nbPeriods;
+            }
+            return (Math.pow(compoundFactor, nbPeriods) - 1.0) / (compoundFactor - 1.0);
+        }
+    
+        service.getForwardValue = function(compoundFactor, initialCapital, monthlyPayment, nbYears) {
+            var res = {};
+
+            console.log("getForwardValue");
+    
+            res.numberOfYears = nbYears;
+            res.numberOfPeriods = nbYears * 12.0;
+            res.initialCapital = initialCapital;
+            res.capitalFactor = Math.pow(compoundFactor, res.numberOfPeriods);
+            res.arithFactor = service.arithFactor(compoundFactor, res.numberOfPeriods)
+            res.capitalEnd = Math.round(
+              initialCapital * res.capitalFactor
+              +  monthlyPayment * res.arithFactor
+            );
+            res.epargne = res.numberOfPeriods * monthlyPayment;
+            res.interestGains = res.capitalEnd - (res.initialCapital + res.epargne);
+    
+            return res;
+        }
+    
         service.numberOrZero = function(obj) {
             if (obj === undefined)
                 return 0;
