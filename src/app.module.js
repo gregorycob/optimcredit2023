@@ -36,13 +36,18 @@ function config($urlRouterProvider, $stateProvider) {
     controller: 'CalculInteretsComposesController',
     controllerAs: 'calcCtrl'
   })
+  .state('calculCredit', {
+    url: '/calcul-credit',
+    templateUrl: 'src/common/calcul-credit/calcul-credit.html',
+    controller: 'CalculCreditController',
+    controllerAs: 'calcCtrl'
+  })
   .state('tauxEndettement', {
     url: '/taux-endettement',
     templateUrl: 'src/common/taux-endettement/taux-endettement.html',
     controller: 'CalculTauxEndettementController',
     controllerAs: 'calcCtrl'
   });
-
 }
 
 })();

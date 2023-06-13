@@ -120,6 +120,20 @@
             return (Math.pow(compoundFactor, nbPeriods) - 1.0) / (compoundFactor - 1.0);
         }
     
+        service.getMontantCredit = function(compoundFactor, payment, nbOfPeriods, insuranceRate) {
+            var c = compoundFactor;
+            var cN = Math.pow(compoundFactor, nbOfPeriods);
+
+            var g = nbOfPeriods;
+            if (c != 1.0)
+            {
+                g = (cN-1) / (cN * (c-1));
+            }
+
+            var m = g * payment / ( 1.0 + g * insuranceRate / 100.0);
+            return m;
+        }
+
         service.getForwardValue = function(compoundFactor, initialCapital, monthlyPayment, nbYears) {
             var res = {};
 

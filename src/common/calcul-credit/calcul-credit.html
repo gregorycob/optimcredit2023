@@ -1,0 +1,125 @@
+<div id="mainbody">
+
+    <fieldset class="container col-md-6 d-grid gap-2">
+
+      <h1 class="bd-title text-center">Calcul de Crédit</h1>
+
+      <legend class="bd-lead text-center">Combien pouvez-vous emprunter ?</legend>
+      <br/>
+
+      <div class="small bd-example container text-justify">
+        <p>Le principe du crédit pour financer un projet, notamment un projet immobilier, c'est que la banque va vous prêter en fonction</p>
+        <ul>
+          <li>de votre <a ui-sref="tauxEndettement">capacité d'emprunt</a>, afin que vous soyez jugé(e)(s) apte(s) à rembourser</li>
+          <li>de votre apport, qui est un gage de sérieux et une marge de sécurité afin qu'en cas de défaut de paiement et de vente du bien, le prêt puisse être remboursé</li>
+        </ul>
+        <p>Ce simulateur vous permet de savoir en 1 clic combien vous pouvez empruntez d'après votre capacité d'emprunt. N'oubliez pas de consistuer aussi un apport en <a ui-sref="interetsComposes">valorisant votre patroimine</a>.</p>
+      </div>
+  
+      <form name='regForm' class="needs-validation" novalidate>
+
+        <div>
+                    
+          <div class="input-group">
+            <span class="input-group-text">Mensualité</span>
+            <input type="number"
+              min="0"
+              step="200"
+              ng-model="calcCtrl.credit.mensualite"
+              ng-change="calcCtrl.calculMontant()"
+              class="form-control text-end"
+              required>
+            <div class="input-group-text">&euro;/mois</div>
+          </div>
+          <span class="small alert alert-light">Indiquez combien vous comptez rembourser chaque mois</span>  
+
+          <br/>
+          <br/>
+
+          <div class="input-group">
+            <span class="input-group-text">Montant</span>
+            <input type="number"
+              min="0"
+              step="10000"
+              ng-model="calcCtrl.credit.montant"
+              ng-change="calcCtrl.calculMontant()"
+              class="form-control text-end bg-light"
+              readonly
+              >
+            <div class="input-group-text">&euro;</div>
+          </div>
+          <span class="small alert alert-light">Indiquez combien vous comptez rembourser chaque mois</span>  
+
+          <br/>
+          <br/>
+
+          <div class="input-group">
+            <label class="form-label">Durée du crédit : {{ calcCtrl.credit.duree }} ans</label>
+            <input type="range" class="form-range"
+              min="3"
+              max="25"
+              step="1"
+              ng-model="calcCtrl.credit.duree"
+              ng-change="calcCtrl.calculMontant()"
+              >
+          </div>
+          <span class="small alert alert-light">
+            Indiquez la durée du crédit, en général les banques prêtent sur 15, 20 et parfois 25 ans.
+          </span> 
+
+          <br/>
+          <br/>
+          
+          <div class="input-group">
+            <label class="form-label">Taux du crédit : {{ calcCtrl.credit.tauxAnnuel }} %/an</label>
+            <input type="range" class="form-range"
+              min="0"
+              max="6"
+              step="0.05"
+              ng-model="calcCtrl.credit.tauxAnnuel"
+              ng-change="calcCtrl.calculMontant()"
+              >
+          </div>
+          <span class="small alert alert-light">
+            Indiquez le taux d'intérêt de votre crédit.
+            Les taux changent régulièrement,
+            vous pouvez consulter le <a href="https://www.meilleurtaux.com/credit-immobilier/barometre-des-taux.html" target="_blank">baromètre des taux</a>.
+          </span> 
+
+          <br/>   
+          <br/>   
+
+          <div class="input-group">
+            <span class="input-group-text">Taux d'assurance</span>
+            <input type="number"
+              min="0"
+              step="0.01"
+              ng-model="calcCtrl.credit.tauxAssurance"
+              ng-change="calcCtrl.calculMontant()"
+              class="form-control text-end"
+              required>
+            <div class="input-group-text">%</div>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio"
+            ng-model="calcCtrl.credit.modeTauxAssurance"
+            value="tauxMoyen" name="flexRadioDefault" id="flexRadioDefault1"
+            disabled="true">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Taux moyen
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" ng-model="calcCtrl.rente.sexe"
+            disabled="true"
+            value="capitalRestantDu" name="flexRadioDefault" id="flexRadioDefault2">
+            <label class="form-check-label" for="flexRadioDefault2">
+              Taux sur le capital restant dû
+            </label>
+          </div>  
+
+        </div>
+      </form>
+    </fieldset>
+
+  </div>
