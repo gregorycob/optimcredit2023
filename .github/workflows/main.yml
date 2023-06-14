@@ -34,7 +34,7 @@ jobs:
         ref: refs/heads/migrate_to_angular
     
     - run: echo "NPM clean-install & build"
-    - run: npm ci
+    - run: npm install
     - run: npm run build
 
     - name: Sync files to test
