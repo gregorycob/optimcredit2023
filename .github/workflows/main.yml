@@ -3,10 +3,15 @@ name: Deploy website on push
 jobs:
   web-deploy:
     name: Deploy
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
+    
     steps:
+    - run: echo "Deploying to production WWW the branch $GITHUB_REF"
     - name: Get latest code
       uses: actions/checkout@v3
+      with:
+        ref: refs/heads/main
     
     - name: Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
