@@ -33,10 +33,19 @@ jobs:
       with:
         ref: refs/heads/migrate_to_angular
     
+    - run: echo "NPM clean-install & build"
+    - run: npm ci
+    - run: npm run build
+
     - name: Sync files to test
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{secrets.ftp_server}}
         username: ${{secrets.ftp_username}}
         password: ${{secrets.ftp_password}}
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/package.json
         server-dir: 'www/test-www/'
