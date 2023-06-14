@@ -4,14 +4,14 @@
 
       <h1 class="bd-title text-center">Taux d'Endettement</h1>
 
-      <legend class="bd-lead text-center">Combien pouvez-vous emprunter ?</legend>
+      <legend class="bd-lead text-center">Combien pouvez-vous rembourser ?</legend>
       <br/>
 
       <div class="small bd-example container text-justify">
         <p>Le principe du taux d'endettement est de vous assurer que vous n'aurez pas trop de crédits à rembourser, afin de ne pas vous mettre en difficulté.</p>
         <p>Les banques vont donc calculer votre <b>capacité d'emprunt</b> en comparant les revenus que vous recevez, et les charges et crédits sur lesquels vous êtes fermement engagé(e)s.</p>
         <p>Selon les banques et selon les périodes, le calcul peut varier et donnera différents résultats qui correspondent à différents niveaux de risque.</p>
-        <p>Notre calculateur vous aide à faire le point et vous donne des répères quant à ce que vous pourrez obtenir.</p>
+        <p>Notre calculateur vous aide à faire le point et savoir combien vous pouvez rembourser pour un nouveau crédit.</p>
 
       </div>
   
@@ -163,7 +163,12 @@
                 {{ calcCtrl.displayNombre(row.capaciteEmprunt) }} &euro;/mois
               </td>
             </tr>
-          </table>
+            <tr ng-if="calcCtrl.scenarios">
+              <td class="small" colspan="2">
+                Voir <a class="link" ui-sref="calculCredit">combien emprunter</a> avec ces capacités de remboursement.
+              </td>  
+            </tr>
+            </table>
 
           <div class="container cold-md-6 small" ng-if="calcCtrl.scenarios">
             <div ng-repeat="row in calcCtrl.scenarios">
