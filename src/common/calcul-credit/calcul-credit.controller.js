@@ -45,7 +45,8 @@
       }
 
       calcCtrl.changeMensualiteBySlider = function() {
-        calcCtrl.credit.mensualite = parseInt(calcCtrl.credit.mensualiteStr);
+        var cleanStr = calcCtrl.credit.mensualiteStr.replace(/\s/g, '').replace(/,/g,'').replace(".", '');
+        calcCtrl.credit.mensualite = parseInt(cleanStr);
         calcCtrl.calculMontant();
       }
 
