@@ -40,6 +40,13 @@
         var m = OptimCreditAPIService.getMontantCredit(monthlyCompound, calcCtrl.credit.mensualite, nbOfPeriods, monthlyAssurance);
 
         calcCtrl.credit.montant = Math.round(m);
+
+        calcCtrl.credit.mensualiteStr = Math.min(calcCtrl.credit.mensualite, 5000);
+      }
+
+      calcCtrl.changeMensualiteBySlider = function() {
+        calcCtrl.credit.mensualite = parseInt(calcCtrl.credit.mensualiteStr);
+        calcCtrl.calculMontant();
       }
 
       calcCtrl.displayNombre = function(x) {

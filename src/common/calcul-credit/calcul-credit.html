@@ -30,6 +30,13 @@
               class="form-control text-end"
               required>
             <div class="input-group-text">&euro;/mois</div>
+            <input type="range" class="form-range"
+              min="0"
+              max="5000"
+              step="200"
+              ng-model="calcCtrl.credit.mensualiteStr"
+              ng-change="calcCtrl.changeMensualiteBySlider()"
+            >
           </div>
           <span class="small alert alert-light">Indiquez combien vous comptez rembourser chaque mois</span>  
 
