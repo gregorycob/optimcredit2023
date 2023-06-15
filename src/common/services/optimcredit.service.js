@@ -14,9 +14,7 @@
 
         service.getImpot = function(decl) {
 
-            // default values
             var declObj = {};
-
             //declObj.salaire2 = 0;
             //declObj.autresRevenus = 0;
             //declObj.reductionImpot = 0;
@@ -135,10 +133,7 @@
         }
 
         service.getForwardValue = function(compoundFactor, initialCapital, monthlyPayment, nbYears) {
-            var res = {};
-
-            console.log("getForwardValue");
-    
+            var res = {};    
             res.numberOfYears = nbYears;
             res.numberOfPeriods = nbYears * 12.0;
             res.initialCapital = initialCapital;
@@ -148,8 +143,8 @@
               initialCapital * res.capitalFactor
               +  monthlyPayment * res.arithFactor
             );
-            res.epargne = res.numberOfPeriods * monthlyPayment;
-            res.interestGains = res.capitalEnd - (res.initialCapital + res.epargne);
+            res.epargne = Math.round(res.numberOfPeriods * monthlyPayment);
+            res.interestGains = Math.round(res.capitalEnd - (res.initialCapital + res.epargne));
     
             return res;
         }

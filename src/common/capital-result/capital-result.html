@@ -1,16 +1,18 @@
 <div>
   <div class="input-group">
     <span class="input-group-text">Patrimoine à {{ $ctrl.calcResult.numberOfYears }} ans</span>
-    <input type="number"
+    <input type="text"
+      number-input
       min="0"
       step="0.05"
       ng-model="$ctrl.calcResult.capitalEnd"
       class="form-control text-end bg-light"
       readonly
-      required>
+      required
+      >
     <div class="input-group-text">&euro;</div>
   </div>
   <span class="small alert alert-light">
-    Dont {{ $ctrl.calcResult.epargne }} &euro; épargnés
-    et {{ $ctrl.calcResult.interestGains }} &euro; gagnés grâce aux intérêts.</span>    
+    Dont {{ $ctrl.calcResult.epargne | number }} &euro; épargnés
+    et {{ $ctrl.calcResult.interestGains | number }} &euro; gagnés grâce aux intérêts.</span>    
 </div>

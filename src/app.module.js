@@ -11,7 +11,7 @@ function config($urlRouterProvider, $stateProvider) {
     console.log("load app config");
 
     // If user goes to a path that doesn't exist, redirect to public root
-  $urlRouterProvider.otherwise('/calcul-impot-sur-les-revenus');
+  $urlRouterProvider.otherwise('/calcul-credit');
 
   $stateProvider
   .state('impot', {
